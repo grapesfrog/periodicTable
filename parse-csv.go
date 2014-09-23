@@ -3,20 +3,18 @@
 My current thoughts this will be easier to do if  I grab the header row as a string and break it up that way I may change my mind though on approach. Suggestions welcome
 */
 
+// usage ./parse-csv -ouput=name-of-generated-output-file -input=name-of-csv-file-to-read
+
 package main
 
 import (
 	"encoding/csv"
+	"flag"
 	"fmt"
 	"io"
 	"os"
 	"strings"
 )
-
-// TODO: change so pass input and output fle names as arguments
-
-// location and name of flat json file
-const outputfile string = "/tmp/output.json"
 
 //Number of elements in the periodic table
 const count_of_elements int = 118
@@ -25,8 +23,20 @@ const count_of_elements int = 118
 var keyname string
 
 var LineValue string
+var outputfile string
+var inputfile string
 
 func main() {
+
+	// flag( name, default value, description)
+	flag.StringVar(&inputfile, "input", "PeriodicTableDataSet.csv", "File to read")
+	flag.StringVar(&outputfile, "output", "/tmp/output.json", "JSON file created")
+	flag.Parse()
+
+	// set file values <- yeah I now ugly
+
+	inputfile = inputfile
+	outputfile = outputfile
 
 	createNewFile()
 
@@ -35,8 +45,7 @@ func main() {
 	// mykeynames array to hold header row which constitutes the names that are used to create the keys
 	mykeynames := []string{"Z", "Symbol", "Name", "A", "N", "Period", "IUPAC_Group", "Old_IUPAC", "CAS_Group", "Category", "Standard_Atomic_Weight", "Last _Digit", "Ionisation_eV", "Normal_State", "Density_Kg_m3_20°C", "Melting_point_°C", "Melting_point_K", "Boiling_point_°C", "Boiling_point_K", "Year_of_discovery", "Discoverer"}
 
-	//location and name of csv file of periodic table  that needs to be parsed
-	csvfile, err := os.Open("PeriodicTableDataSet.csv")
+	csvfile, err := os.Open(inputfile)
 
 	if err != nil {
 		fmt.Println(err)

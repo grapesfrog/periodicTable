@@ -6,5 +6,39 @@ I am using a Periodic table of the elements  as the Dataset but I cannot recall 
 
 "Z", "Symbol", "Name", "A", "N", "Period", "IUPAC_Group", "Old_IUPAC", "CAS_Group", "Category", "Standard_Atomic_Weight", "Last _Digit", "Ionisation_eV", "Normal_State", "Density_Kg_m3_20°C", "Melting_point_°C", "Melting_point_K", "Boiling_point_°C", "Boiling_point_K", "Year_of_discovery", "Discoverer"
 
+Version 1:
+
+parse-csv.go
+
 The first program  takes a csv of the periodic elements and converts to a flat JSON file. 
+
+Version 2:
+
+In version 2 the code is refactored so that the CreateNewFile and AppendToFile functions are removed from the main program (which is now called flat-json.go ) and split out into a separate package called parser (I know I am rubbish at naming anything!) The main program calls the package which contains the functions and the program works as before.
+
+This reconfiguration is so that the code can be set up following best practise in terms of using your  [workspace](http://golang.org/doc/code.html#Workspaces)
+
+**To build and run **
+
+build and install package
+
+Assuming you have cloned into your workspace
+
+cd into the parsers folder and build and install the parsers package
+
+`go build `
+
+`go install`
+
+Then build the flat-json program 
+
+`go buid flat-json`
+
+To run 
+
+`./flat-json -ouput=name-of-generated-output-file -input=name-of-csv-file-to-read` 
+
+
+
+
 

@@ -18,7 +18,7 @@ In version 2 the code is refactored so that the CreateNewFile and AppendToFile f
 
 This reconfiguration is so that the code can be set up following best practise in terms of using your  [workspace](http://golang.org/doc/code.html#Workspaces)
 
-**To build and run **
+** To build and run **
 
 build and install package
 

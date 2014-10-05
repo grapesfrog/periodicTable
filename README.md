@@ -40,5 +40,9 @@ To run
 
 
 
+**Testing**
 
+To run the tests type 
+
+`go test`
 

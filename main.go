@@ -1,18 +1,23 @@
 /*
+usgae usage ./main -H=name-of-mongodb-host
 TODO:
-Put in some messagsing when http service starts
 put in  some comments
 Write tests
-Phase 2: make pretty by using one of the framework libraries
+Phase 2: make output pretty and use template/http
+Change mongo connection so uses envirnment variables so can pass to Container
 */
 package main
 
 import (
+	"flag"
 	"fmt"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
+	"log"
 	"net/http"
 )
+
+var H string // mongodb hostname
 
 type element struct {
 	ID                     bson.ObjectId `bson:"_id,omitempty"`
@@ -41,16 +46,26 @@ type element struct {
 
 func main() {
 
+	// flag( name, default value, description)
+	flag.StringVar(&H, "H", "localhost", "MongoDB hostname")
+	flag.Parse()
+
 	http.HandleFunc("/", myHandler)
-	http.ListenAndServe(":8080", nil)
+	log.Println("Listening on 8080")
+	err := http.ListenAndServe(":8080", nil)
+	if err != nil {
+		log.Fatal(err)
+	}
+
 }
 
 func myHandler(w http.ResponseWriter, r *http.Request) {
-	session, err := mgo.Dial("localhost")
+	session, err := mgo.Dial(H)
 	defer session.Close()
 
 	if err != nil {
 		fmt.Fprintf(w, "could not connect to mongodb")
+		log.Fatal(err)
 	}
 
 	var elements []element

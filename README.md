@@ -47,7 +47,7 @@ To run the tests type
 `go test`
 
 
-**wikiparse.go ** 
+**wikiparse.go** 
 
 I needed a bigger data set for some vraious tests I was doing so I extracted data from wikipedia using the category "Chemical elements" and removing the category and random pages that I would have got via this prior to doanloading from wikipedia
 

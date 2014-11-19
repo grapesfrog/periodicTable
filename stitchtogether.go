@@ -1,9 +1,10 @@
 // usage ./filecontents -folder=folder_to_walk -outfile=output_file_to_create
 
 /*
-This  expects a folder full of valid JSON snippets in individual files .
+This  expects a folder consisting  of valid JSON snippets in individual files .
 It will knit the  individual files together as  single valid  JSON file that can be uploaded to mnogodb , bigquery etc
- NOTE: probably should not have used walk as that is recursive but it's so neat a way to work I could also have used a boolean to see if last file being processed
+ NOTE: probably should not have used walk as that is recursive but it's such  neat a way to work with directories
+  I could also have used a boolean to see if last file being processed
 */
 package main
 
